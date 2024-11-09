@@ -113,10 +113,12 @@ group by loan_status;
 #MONTHLY TRENDS
 select 
 	month(issue_date) as month_number,
-    dayname(month(issue_date)) as month_name,
     count(id) as total_loan_applications,
     sum(loan_amount) as total_funded_amount,
-    sum(total_payment) as total_amount_received;
+    sum(total_payment) as total_amount_received
+    from financial_loan
+    group by month(issue_date), dayname(month(issue_date))
+    order by month(issue_date);
 
 #ADDRESS STATE
     
